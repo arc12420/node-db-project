@@ -6,7 +6,7 @@ module.exports = {
         res.status(200).send(ItemsForSale)
     },
     addItemsForSale: (req, res) => {
-        const { name } = req.body;
+        const { name, year, description } = req.body;
         if (!name) {
             res.status(405).send('Unable to find item Name')
         } else {
