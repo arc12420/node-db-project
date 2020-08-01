@@ -12,13 +12,7 @@ class ProductInteraction extends Component {
     constructor(){
       super();
       this.state = {
-        itemsForSale: [{
-            name: "",
-            year: "",
-            id: 0,
-            description: "",
-            status: false
-        }],
+        itemsForSale: [],
         index: 0 
       }
     //   this.getItemsForSale = this.getItemsForSale.bind
@@ -62,7 +56,8 @@ class ProductInteraction extends Component {
         axios.delete(`/api/ItemsForSale/${this.state.itemsForSale[this.state.index].id}`)
         .then(res => {
             this.setState({
-                itemsForSale: res.data
+                itemsForSale: res.data,
+                index: 0
             })
         }).catch( err => console.log(err))
     }
@@ -94,7 +89,7 @@ class ProductInteraction extends Component {
                 <main>
                     <div className="spaceAndButtons">
                         <div className="pushHouseInfoBtnRight"></div>
-                        <Buttonz putItemsForSale={this.putItemsForSale} deleteItemForSale={this.deleteItemForSale}/>
+                        {this.state.itemsForSale[this.state.index] ? <Buttonz putItemsForSale={this.putItemsForSale} deleteItemForSale={this.deleteItemForSale}/>: <div className="houseInfoNav"></div>}
                     </div>
                     <section className="allItemInfo">
                         <Form addItem={this.addItemsForSale}/>
