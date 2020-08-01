@@ -2,6 +2,8 @@ import React, {Component} from 'react'
 import axios from 'axios';
 import HouseInfo from './HouseInfo';
 import Buttonz from './Buttonz';
+import Form from './Form';
+import Navigation from './Navigation';
 
 
 
@@ -19,6 +21,7 @@ class ProductInteraction extends Component {
         }],
         index: 0 
       }
+    //   this.getItemsForSale = this.getItemsForSale.bind
     }
     
     componentDidMount() {
@@ -34,6 +37,36 @@ class ProductInteraction extends Component {
             }
         ).catch ( err => console.log(err))
     }
+
+    addItemsForSale = (name, year, description) => {
+        axios.post(`/api/ItemsForSale`, {name, year,description})
+        .then( res => {
+            this.setState({
+                itemsForSale:res.data
+            })
+        }
+     ).catch ( err => console.log(err))
+    }
+
+    putItemsForSale = (id, status) => {
+        axios.put(`/api/ItemsForSale/${this.state.itemsForSale[this.state.index].id}`, {status: !this.state.itemsForSale[this.state.index].status})
+            .then( res => {
+                this.setState({
+                    itemsForSale:res.data
+                })
+            }
+        ).catch ( err => console.log(err))
+    } 
+
+    deleteItemForSale =() => {
+        axios.delete(`/api/ItemsForSale/${this.state.itemsForSale[this.state.index].id}`)
+        .then(res => {
+            this.setState({
+                itemsForSale: res.data
+            })
+        }).catch( err => console.log(err))
+    }
+
 
     next = () => {
         if(this.state.index < this.state.itemsForSale.length - 1){
@@ -51,18 +84,6 @@ class ProductInteraction extends Component {
         }
     }
 
-    sold = () => {
-        if(!this.state.itemsForSale[this.state.index].status){
-            this.setState({
-                status: "Available"
-            })
-        } else {this.setState({
-            status: "Sold!!!"
-        })}
-    }
-
-
-
 
     render(){
         // console.log(this.state)
@@ -70,9 +91,14 @@ class ProductInteraction extends Component {
                 <header className="Head">                          
                     <h1 className = "business-title"> Anderson <br/>Auction House</h1>         
                 </header>
-                <HouseInfo itemsForSale={this.state.itemsForSale} index={this.state.index}/>
-                <Buttonz next={this.next} previous={this.previous} sold={this.sold}/>
-                <footer className="Foot"></footer>
+                <main>
+                    <Buttonz putItemsForSale={this.putItemsForSale} deleteItemForSale={this.deleteItemForSale}/>
+                    <HouseInfo itemsForSale={this.state.itemsForSale} index={this.state.index}/>
+                    <Form addItem={this.addItemsForSale}/>
+                </main>
+                <footer className="Foot">
+                    <Navigation  next={this.next} previous={this.previous}/>
+                </footer>
             </div>
         )
 

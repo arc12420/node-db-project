@@ -20,3 +20,26 @@ font-family: 'Taviraj', serif
   color: whitesmoke;
   padding-left: 20px;
 }
+
+
+.rightSide {
+  height:60vh;
+  width:50vw;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: tomato;
+}
+.ItemInfoBox {
+  
+  height: 30vh;
+  width: 25vw;
+  background-color: whitesmoke;
+  display: flex;
+  justify-content: space-evenly;
+  /* align-items: flex-end; */
+  flex-direction: column;
+}
+h3 {
+  padding: 5px;
+}
