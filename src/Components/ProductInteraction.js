@@ -92,9 +92,14 @@ class ProductInteraction extends Component {
                     <h1 className = "business-title"> Anderson <br/>Auction House</h1>         
                 </header>
                 <main>
-                    <Buttonz putItemsForSale={this.putItemsForSale} deleteItemForSale={this.deleteItemForSale}/>
-                    <HouseInfo itemsForSale={this.state.itemsForSale} index={this.state.index}/>
-                    <Form addItem={this.addItemsForSale}/>
+                    <div className="spaceAndButtons">
+                        <div className="pushHouseInfoBtnRight"></div>
+                        <Buttonz putItemsForSale={this.putItemsForSale} deleteItemForSale={this.deleteItemForSale}/>
+                    </div>
+                    <section className="allItemInfo">
+                        <Form addItem={this.addItemsForSale}/>
+                        <HouseInfo itemsForSale={this.state.itemsForSale} index={this.state.index}/>
+                    </section>
                 </main>
                 <footer className="Foot">
                     <Navigation  next={this.next} previous={this.previous}/>

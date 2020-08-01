@@ -28,15 +28,16 @@ class Form extends Component {
         const {name, year, description} = this.state
 
         return <div className="formContainer">
-            <form onSubmit = {(e) => {
-                // e.preventDefault() 
+            <div className="formInput">
+                <form onSubmit = {(e) => {
                 this.props.addItem(name, year, description)
-            }}>
-                <input onChange = {(e) => this.handleName(e.target.value)} value ={name} type="text" placeholder = "Item Name"/>
-                <input onChange = {(e) => this.handleYear(e.target.value)} value ={year} type="text" placeholder = "Year Crafted"/>
-                <input onChange = {(e) => this.handleDescription(e.target.value)}value ={description} type="text" placeholder = "Description of Item"/>
-                <button type = "submit"> Add Item </button>
-            </form>
+                }}>
+                    <input className="inpt" onChange = {(e) => this.handleName(e.target.value)} value ={name} type="text" placeholder = "Item Name"/>
+                    <input className="inpt" onChange = {(e) => this.handleYear(e.target.value)} value ={year} type="text" placeholder = "Year Crafted"/>
+                    <input className="inpt" onChange = {(e) => this.handleDescription(e.target.value)}value ={description} type="text" placeholder = "Description of Item"/>
+                    <button className="adBtn" type = "submit"> Add Item </button>
+                </form>
+            </div>
         </div>
     }
 }
