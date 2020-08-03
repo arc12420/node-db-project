@@ -163,6 +163,8 @@ form {
   border-style: solid;
   flex-direction: column;
   border-radius: 1.25%;
+  padding-left: 20px;
+  padding-bottom: 50px;
 }
 h3 {
   padding: 5px;
